@@ -1,1 +1,30 @@
-/usr/local/bin/amx_set-wallpaper
+# ====================================================
+# AMX_Manager Copyright(C) 2018 Furkan Türkal
+# This program comes with ABSOLUTELY NO WARRANTY; This is free software,
+# and you are welcome to redistribute it under certain conditions; See
+# file LICENSE, which is part of this source code package, for details.
+# ====================================================
+
+#!/bin/bash
+
+main() {
+
+    case "$1" in
+        default)
+            feh --bg-fill ~/Pictures/Wallpapers/wp1.jpg
+            notify-send -a 'AMX_Wallpaper' 'Wallpaper changed to default'
+            ;;
+        random)
+            feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+            notify-send -a 'AMX_Wallpaper' 'Wallpaper changed to random'
+            ;;
+
+        *)
+            printf "wallpaper <command>\n"
+            printf "         default \n"
+            printf "         random\n"
+
+        esac
+}
+
+main "$@"
