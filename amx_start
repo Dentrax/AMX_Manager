@@ -15,6 +15,17 @@ main() {
             export PATH=/home/dentrax/anaconda3/bin:$PATH
             python /home/dentrax/anaconda3/bin/anaconda-navigator
             ;;
+        rofi)
+            rofi -sidebar-mode \
+                 -modi run,drun,window \
+                 -lines 12 \
+                 -padding 18 \
+                 -width 60 \
+                 -location 0 \
+                 -show drun \
+                 -columns 3 \
+                 -font "Bebas Neue Bold 11"
+            ;;
         random)
             feh --randomize --bg-fill ~/Pictures/Wallpapers/*
             notify-send -a 'AMX_Wallpaper' 'Wallpaper changed to random'
