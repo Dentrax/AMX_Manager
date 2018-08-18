@@ -14,8 +14,8 @@ ICON_SUCCESS='/usr/share/icons/gnome/32x32/status/stock_dialog-info.png'
 ICON_FAILURE='/usr/share/icons/gnome/32x32/status/stock_dialog-error.png'
 
 # Check for required applications
-command -v notify-send >/dev/null 2>&1 || { echo >&2 "AMX_Screenshot: I require 'notify-send' but it's not installed! Aborting."; exit 1; }
-command -v xclip       >/dev/null 2>&1 || { echo >&2 "AMX_Screenshot: I require 'xclip' but it's not installed! Aborting."; exit 1; }
+command -v notify-send >/dev/null 2>&1 || { echo >&2 "AMX_Screenshot: I require 'notify-send' but it's not installed! Aborting.";   exit 1; }
+command -v xclip       >/dev/null 2>&1 || { echo >&2 "AMX_Screenshot: I require 'xclip' but it's not installed! Aborting.";         exit 1; }
 
 # Check if icons exist
 if [ ! -f "$ICON_SUCCESS" ]; then echo >&2 'Missing success icon: '"$ICON_SUCCESS"; exit 2; fi
