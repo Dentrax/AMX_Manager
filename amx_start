@@ -30,7 +30,7 @@ main() {
             firefox -url https://www.google.com -P "default" -fullscreen
             ;;
         firefox-safe)
-            firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen
+            firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen -foreground -silent
             ;;
         termite)
             termite
