@@ -26,15 +26,30 @@ main() {
                  -columns 3 \
                  -font "Bebas Neue Bold 11"
             ;;
-        random)
-            feh --randomize --bg-fill ~/Pictures/Wallpapers/*
-            notify-send -a 'AMX_Wallpaper' 'Wallpaper changed to random'
+        firefox)
+            firefox -url https://www.google.com -P "default" -fullscreen
             ;;
-
+        firefox-safe)
+            firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen
+            ;;
+        termite)
+            termite
+            ;;
+        thunar)
+            thunar
+            ;;
+        mailspring)
+            mailspring
+            ;;
         *)
             printf "amx_start <command>\n"
-            printf "         default \n"
-            printf "         random\n"
+            printf "          anaconda-navigator \n"
+            printf "          rofi\n"
+            printf "          firefox\n"
+            printf "          firefox-safe\n"
+            printf "          termite\n"
+            printf "          thunar\n"
+            printf "          mailspring\n"
 
         esac
 }
