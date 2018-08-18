@@ -1,0 +1,24 @@
+# ====================================================
+# AMX_Manager Copyright(C) 2018 Furkan Türkal
+# This program comes with ABSOLUTELY NO WARRANTY; This is free software,
+# and you are welcome to redistribute it under certain conditions; See
+# file LICENSE, which is part of this source code package, for details.
+# ====================================================
+
+#!/bin/sh
+
+main() {
+    case "$1" in
+      install)
+         sudo pacman -S
+         ;;
+      update)
+         sudo pacman -Syu
+         ;;
+     *)                                                                                               printf "volume <command>\n"
+         printf "          up \n"
+         printf "         down\n"
+    esac
+}
+                                                                                                                    
+main "$@"
