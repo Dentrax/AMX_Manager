@@ -20,24 +20,33 @@ command -v nmtui-connect    >/dev/null 2>&1 || { echo >&2 "AMX_WiFi: I require '
 
 main() {
     case "$1" in
-      on)
-         nmcli r wifi on
-         notify-send -i "$ICON_WIFI_ON" -a 'AMX_WiFi' -u normal 'WiFi enabled'
-         ;;
-      off)
-         nmcli r wifi off
-         notify-send -i "$ICON_WIFI_OFF" -a 'AMX_WiFi' -u normal 'WiFi disabled'
-         ;;
-      connect)
-         nmtui-connect
-         notify-send -i "$ICON_ONLINE" -a 'AMX_WiFi' -u normal 'WiFi connected'
-         ;;
-     *)
-         printf "amx_wifi <command>\n"
-         printf "          on \n"
-         printf "          off\n"
-         printf "          connect\n"
-    esac
+        on)
+            nmcli r wifi on
+            notify-send -i "$ICON_WIFI_ON" -a 'AMX_WiFi' -u normal 'WiFi enabled'
+            ;;
+        off)
+            nmcli r wifi off
+            notify-send -i "$ICON_WIFI_OFF" -a 'AMX_WiFi' -u normal 'WiFi disabled'
+            ;;
+        connect)
+            nmcli connection up id "$2"
+            notify-send -i "$ICON_ONLINE" -a 'AMX_WiFi' -u normal 'WiFi connected'
+            ;;
+        disconnect)
+            nmcli connection up id "$2"
+            notify-send -i "$ICON_OFFLINE" -a 'AMX_WiFi' -u normal 'WiFi disconnected'
+            ;;
+        show)
+            nmcli connection show
+            ;;
+        *)
+            printf "amx_wifi <command>\n"
+            printf "          on \n"
+            printf "          off\n"
+            printf "          connect\n"
+            printf "          disconnect\n"
+            printf "          show\n"
+        esac
 }
                                                                                                                     
 main "$@"
