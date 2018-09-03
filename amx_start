@@ -10,6 +10,9 @@
 main() {
 
     case "$1" in
+        android-emulator)
+            $ANDROID_HOME/emulator/emulator -avd Nexus4-23 -netdelay none -netspeed full -netfast -accel on -nojni
+            ;;
         anaconda-navigator)
             export CONDA_PYTHON_EXE=/home/dentrax/anaconda3/bin/python
             export PATH=/home/dentrax/anaconda3/bin:$PATH
@@ -49,6 +52,7 @@ main() {
             ;;
         *)
             printf "amx_start <command>\n"
+            printf "          android-emulator\n"
             printf "          anaconda-navigator \n"
             printf "          rofi\n"
             printf "          firefox\n"
