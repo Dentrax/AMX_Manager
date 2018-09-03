@@ -27,7 +27,7 @@ main() {
                  -font "Bebas Neue Bold 11"
             ;;
         firefox)
-            firefox -url https://www.duckduckgo.com -P "default" -fullscreen
+            firefox -url https://www.google.com -P "default" -fullscreen
             ;;
         firefox-safe)
             firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen -foreground -silent
