@@ -18,22 +18,38 @@ main() {
             export PATH=/home/dentrax/anaconda3/bin:$PATH
             python /home/dentrax/anaconda3/bin/anaconda-navigator
             ;;
+        chromium)
+            chromium
+            ;;
         rofi)
-            rofi -sidebar-mode \
-                 -modi run,drun,window \
-                 -lines 12 \
-                 -padding 18 \
-                 -width 60 \
-                 -location 0 \
-                 -show drun \
-                 -columns 3 \
-                 -font "Bebas Neue Bold 11"
+            case "$2" in
+                normal)
+                    rofi modi run,drun \
+                        -show drun \
+                        -lines 3 \
+                        -columns 2 \
+                        -eh 1 \
+                        -width 200 \
+                        -padding 450 \
+                        -opacity "85" \
+                        -bw 0 \
+                        -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" \
+                        -font "System San Francisco Display 25"
+                ;;
+                window)
+                    rofi -show window -lines 2 -eh 2 -width 200 -padding 450 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 13"
+                ;;
+                *)
+                    printf "amx_start rofi <command>\n"
+                    printf "               normal\n"
+                    printf "               window\n"  
+            esac
             ;;
         firefox)
             firefox -url https://www.google.com -P "default" -fullscreen
             ;;
         firefox-safe)
-            firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen -foreground -silent
+            TZ=UTC firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen -foreground -silent
             ;;
         termite)
             termite
@@ -47,6 +63,36 @@ main() {
         putty-usb)
             sudo putty /dev/ttyUSB0 -serial -sercfg 9600,8,n,1,N
             ;;
+        emacs)
+            emacsclient -a '' -nqc "$@"
+            ;;
+        ranger)
+        	case "$2" in
+        		documents)
+        			ranger ~/Documents
+        		;;
+        		downloads)
+        			ranger ~/Downloads
+        		;;
+        		projects)
+        			ranger ~/Projects
+        		;;
+        		pictures)
+        			ranger ~/Pictures
+        		;;
+        		music)
+        			ranger ~/Music
+        		;;
+        		*)
+        		printf "amx_start ranger <command>\n"
+	            printf "          		 downloads\n"
+	            printf "          		 documents\n"
+	            printf "          		 projects\n"
+	            printf "          		 pictures\n"
+	            printf "          		 music\n"
+
+        	esac
+        	;;
         x)
             startx
             ;;
@@ -60,7 +106,9 @@ main() {
             printf "          termite\n"
             printf "          thunar\n"
             printf "          mailspring\n"
-
+            printf "          putty-usb\n"
+            printf "          emacs\n"
+            printf "          ranger\n"
         esac
 }
 
