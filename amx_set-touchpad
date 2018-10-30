@@ -7,6 +7,9 @@
 
 #!/bin/bash
 
+ICON_MOUSE=/usr/share/icons/Papirus/64x64/devices/input-mouse.svg
+ICON_TOUCHPAD=/usr/share/icons/Papirus/64x64/devices/input-touchpad.svg
+
 # Check for required applications
 command -v notify-send  >/dev/null 2>&1 || { echo >&2 "AMX_Wallpaper: I require 'notify-send' but it's not installed! Aborting.";   exit 1; }
 command -v xinput       >/dev/null 2>&1 || { echo >&2 "AMX_Wallpaper: I require 'xinput' but it's not installed! Aborting.";        exit 1; }
@@ -35,10 +38,10 @@ main() {
         auto)
             if [ $(ls /dev/input | grep mouse | wc -l) -gt 1 ]; then
                 synclient TouchpadOff=1
-                notify-send -a 'AMX_Touchpad' -u low 'Mouse Mod; Touchpad Disabled' -i /usr/share/icons/Papirus/64x64/devices/input-mouse.svg
+                notify-send -a 'AMX_Touchpad' -u low 'Mouse Mod; Touchpad Disabled' -i $ICON_MOUSE
             else
                 synclient TouchpadOff=0
-                notify-send -a 'AMX_Touchpad' -u low 'Touchpad Mod; Mouse Disabled' -i /usr/share/icons/Papirus/64x64/devices/input-touchpad.png
+                notify-send -a 'AMX_Touchpad' -u low 'Touchpad Mod; Mouse Disabled' -i $ICON_TOUCHPAD
             fi 
             ;;
         *)
