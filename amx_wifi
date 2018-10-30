@@ -7,11 +7,11 @@
 
 #!/bin/sh
 
-ICON_ONLINE     ='/usr/share/icons/Papirus/32x32/status/online.svg'
-ICON_OFFLINE    ='/usr/share/icons/Papirus/32x32/status/offline.svg'
+ICON_ONLINE=/usr/share/icons/Papirus/32x32/status/online.svg
+ICON_OFFLINE=/usr/share/icons/Papirus/32x32/status/offline.svg
 
-ICON_WIFI_ON    ='/usr/share/icons/Papirus/32x32/devices/network-wireless.svg'
-ICON_WIFI_OFF   ='/usr/share/icons/Papirus/32x32/devices/network-wireless-hotspot.svg'
+ICON_WIFI_ON='/usr/share/icons/Papirus/32x32/devices/network-wireless-hotspot.svg'
+ICON_WIFI_OFF='/usr/share/icons/Papirus/32x32/devices/network-wireless.svg'
 
 # Check for required applications
 command -v notify-send      >/dev/null 2>&1 || { echo >&2 "AMX_WiFi: I require 'notify-send' but it's not installed! Aborting.";    exit 1; }
@@ -22,19 +22,19 @@ main() {
     case "$1" in
         on)
             nmcli r wifi on
-            notify-send -i "$ICON_WIFI_ON" -a 'AMX_WiFi' -u normal 'WiFi enabled'
+            notify-send -i "$ICON_WIFI_ON" -a 'AMX_WiFi' -u normal 'WiFi Enabled' -i $ICON_WIFI_ON
             ;;
         off)
             nmcli r wifi off
-            notify-send -i "$ICON_WIFI_OFF" -a 'AMX_WiFi' -u normal 'WiFi disabled'
+            notify-send -i "$ICON_WIFI_OFF" -a 'AMX_WiFi' -u normal 'WiFi Disabled' -i $ICON_WIFI_OFF
             ;;
         connect)
             nmcli connection up id "$2"
-            notify-send -i "$ICON_ONLINE" -a 'AMX_WiFi' -u normal 'WiFi connected'
+            notify-send -i "$ICON_ONLINE" -a 'AMX_WiFi' -u normal 'WiFi Connected' -i $ICON_ONLINE
             ;;
         disconnect)
             nmcli connection up id "$2"
-            notify-send -i "$ICON_OFFLINE" -a 'AMX_WiFi' -u normal 'WiFi disconnected'
+            notify-send -i "$ICON_OFFLINE" -a 'AMX_WiFi' -u normal 'WiFi Disconnected' -i $ICON_OFFLINE
             ;;
         show)
             nmcli connection show
