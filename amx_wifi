@@ -10,8 +10,8 @@
 ICON_ONLINE=/usr/share/icons/Papirus/32x32/status/online.svg
 ICON_OFFLINE=/usr/share/icons/Papirus/32x32/status/offline.svg
 
-ICON_WIFI_ON='/usr/share/icons/Papirus/32x32/devices/network-wireless-hotspot.svg'
-ICON_WIFI_OFF='/usr/share/icons/Papirus/32x32/devices/network-wireless.svg'
+ICON_WIFI_ON=/usr/share/icons/Papirus/32x32/devices/network-wireless-hotspot.svg
+ICON_WIFI_OFF=/usr/share/icons/Papirus/32x32/devices/network-wireless.svg
 
 # Check for required applications
 command -v notify-send      >/dev/null 2>&1 || { echo >&2 "AMX_WiFi: I require 'notify-send' but it's not installed! Aborting.";    exit 1; }
