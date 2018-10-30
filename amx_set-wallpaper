@@ -15,7 +15,7 @@ main() {
 
     case "$1" in
         default)
-            hsetroot -full ~/Pictures/Wallpapers/default.jpg
+            hsetroot -fill ~/Pictures/Wallpapers/default.jpg
             notify-send -a 'AMX_Wallpaper' -u low 'Wallpaper changed to default'
             ;;
         select)
@@ -23,7 +23,7 @@ main() {
             check2="~/Pictures/Wallpapers/wp$2.jpg"
             if [ -f "$wallpaper" ]
             then
-                hsetroot -full $wallpaper -blur 0 -tint 0 -sharpen 0
+                hsetroot -fill $wallpaper -blur 0 -tint 0 -sharpen 0
                 # feh --bg-fill $wallpaper
                 notify-send -a 'AMX_Wallpaper' -u low "Wallpaper changed to $2"
             else
@@ -43,6 +43,9 @@ main() {
                 ;;
                 gray)
                     hsetroot -solid '#333333'
+                ;;
+                black)
+                    hsetroot -solid '#000000'
                 ;;
                 *)
                     printf "amx_set-wallpaper solid <command>\n"
