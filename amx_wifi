@@ -36,16 +36,20 @@ main() {
             nmcli connection up id "$2"
             notify-send -i "$ICON_OFFLINE" -a 'AMX_WiFi' -u normal 'WiFi Disconnected' -i $ICON_OFFLINE
             ;;
-        show)
+        show-cli)
             nmcli connection show
             ;;
+        show-ui)
+            nmtui
+            ;;   
         *)
             printf "amx_wifi <command>\n"
             printf "          on \n"
             printf "          off\n"
             printf "          connect\n"
             printf "          disconnect\n"
-            printf "          show\n"
+            printf "          show-cli\n"
+            printf "          show-ui\n"
         esac
 }
                                                                                                                     
