@@ -7,6 +7,8 @@
 
 #!/bin/bash
 
+HOME_WALLPAPER=/home/dentrax/Pictures/Wallpapers
+
 # Check for required applications
 command -v notify-send  >/dev/null 2>&1 || { echo >&2 "AMX_Wallpaper: I require 'notify-send' but it's not installed! Aborting.";   exit 1; }
 command -v feh          >/dev/null 2>&1 || { echo >&2 "AMX_Wallpaper: I require 'feh' but it's not installed! Aborting.";           exit 1; }
@@ -58,7 +60,8 @@ main() {
             
             ;;
         random)
-            feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+            random_wp=$(find "${HOME_WALLPAPER}" -type f | sort -R | head -1)
+            feh --bg-scale "${random_wp}"
             notify-send -a 'AMX_Wallpaper' -u low 'Wallpaper changed to random'
             ;;
 
