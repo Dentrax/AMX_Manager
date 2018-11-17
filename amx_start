@@ -93,11 +93,19 @@ main() {
 
         	esac
         	;;
+        i3)
+            startx ~/.xinitrc i3
+            ;;
+        ob)
+            startx ~/.xinitrc openbox
+            ;;
         x)
-            startx
+            startx ~/.xinitrc i3
             ;;
         *)
             printf "amx_start <command>\n"
+            printf "          i3 (i3)\n"
+            printf "          ob (Openbox)\n"
             printf "          android-emulator\n"
             printf "          anaconda-navigator \n"
             printf "          rofi\n"
