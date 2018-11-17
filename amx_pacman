@@ -9,15 +9,21 @@
 
 main() {
     case "$1" in
-      install)
-         sudo pacman -S
-         ;;
-      update)
-         sudo pacman -Syu
-         ;;
-     *)                                                                                               printf "volume <command>\n"
-         printf "          up \n"
-         printf "         down\n"
+        install)
+            sudo pacman -S
+        ;;
+        update)
+            sudo pacman -Syu
+        ;;
+        update-mirrors)
+            command -v reflector >/dev/null 2>&1 || { echo >&2 "AMX_WiFi: I require 'reflector' but it's not installed! Aborting."; exit 1; }
+            sudo reflector --verbose -l 50 -p http --sort rate --save /etc/pacman.d/mirrorlist
+        ;;
+        *)
+        printf "amx_pacman <command>\n"
+        printf "            install \n"
+        printf "            update\n"
+        printf "            update-mirros\n"
     esac
 }
                                                                                                                     
