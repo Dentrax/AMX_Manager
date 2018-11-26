@@ -39,6 +39,9 @@ main() {
         show-cli)
             nmcli connection show
             ;;
+        show-wifis)
+            nmcli d wifi
+            ;;
         show-ui)
             nmtui
             ;;   
@@ -49,6 +52,7 @@ main() {
             printf "          connect\n"
             printf "          disconnect\n"
             printf "          show-cli\n"
+            printf "          show-wifis\n"
             printf "          show-ui\n"
         esac
 }
