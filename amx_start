@@ -93,6 +93,12 @@ main() {
 
         	esac
         	;;
+        wavemon)
+            wavemon -i wlp3s0
+            ;;
+        htop)
+            htop
+            ;;
         i3)
             startx ~/.xinitrc i3
             ;;
@@ -117,6 +123,8 @@ main() {
             printf "          putty-usb\n"
             printf "          emacs\n"
             printf "          ranger\n"
+            printf "          wavemon\n"
+            printf "          htop\n"
         esac
 }
 
