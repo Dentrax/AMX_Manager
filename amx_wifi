@@ -40,7 +40,7 @@ main() {
             nmcli connection show
             ;;
         show-wifis)
-            nmcli d wifi
+            nmcli dev wifi
             ;;
         show-ui)
             nmtui
