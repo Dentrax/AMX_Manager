@@ -28,37 +28,37 @@
 
 **AMX_Manager for GNU/Linux**
 
-AMX manager is an easy and advanced way to utilizing your Linux usability. It will contribute greatly to both a hobby and a school lesson.
+AMX manager is an easy and advanced way to utilizing your Linux usability.
 
 ## Modules
 
-* AMX_BOOT: Boost the RAM & Temp & Cache 
+* **AMX_BOOT:** Boost the RAM & Temp & Cache 
 
-* AMX_ECHO: Simple echo commands
+* **AMX_ECHO:** Simple echo commands
 
-* AMX_PACMAN: Add and Update commands for Pacman 
+* **AMX_PACMAN:** Add and Update commands for Pacman 
 
-* AMX_POWER: Simple Power commands (Shutdown, Reboot, Suspend, Standby)
+* **AMX_POWER:** Simple Power commands (Shutdown, Reboot, Suspend, Standby)
 
-* AMX_SCREENSHOT: Taking screenshots
+* **AMX_SCREENSHOT:** Taking screenshots
 
-* AMX_MUSIC: Music utilities (Play, Pause, Stop)
+* **AMX_MUSIC:** Music utilities (Play, Pause, Stop)
 
-* AMX_VOLUME: Volume utilities (Up, Down, Mute, Toggle)
+* **AMX_VOLUME:** Volume utilities (Up, Down, Mute, Toggle)
 
-* AMX_LIGHT: Backlight utilities  (Up, Down)
+* **AMX_LIGHT:** Backlight utilities  (Up, Down)
 
-* AMX_RESOLUTION: Screen resolution settings
+* **AMX_RESOLUTION:** Screen resolution settings
 
-* AMX_TOUCHPAD: Laptop Touchpad settings (Enable, Disable, Toggle, Auto)
+* **AMX_TOUCHPAD:** Laptop Touchpad settings (Enable, Disable, Toggle, Auto)
 
-* AMX_START: To start a spesific program
+* **AMX_START:** To start a spesific program
 
-* AMX_WIFI: WiFi utilities (Enable, Disable, Connect, Disconnect)
+* **AMX_WIFI:** WiFi utilities (Enable, Disable, Connect, Disconnect)
 
-* AMX_WMCTRL: Window Manager Controller (Clone, Minify, Maximize)
+* **AMX_WMCTRL:** Window Manager Controller (Clone, Minify, Maximize)
 
-* AMX_ANIMATE: Animate the something
+* **AMX_ANIMATE:** Animate the something
 
 ## How To Use
 
