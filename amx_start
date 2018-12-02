@@ -13,6 +13,9 @@ main() {
         android-emulator)
             $ANDROID_HOME/emulator/emulator -avd Nexus4-23 -netdelay none -netspeed full -netfast -accel on -nojni
             ;;
+        android-studio)
+            android-studio
+            ;;
         anaconda-navigator)
             export CONDA_PYTHON_EXE=/home/dentrax/anaconda3/bin/python
             export PATH=/home/dentrax/anaconda3/bin:$PATH
