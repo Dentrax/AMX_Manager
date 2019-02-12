@@ -33,7 +33,7 @@ main() {
             notify-send -i "$ICON_ONLINE" -a 'AMX_WiFi' -u normal 'WiFi Connected' -i $ICON_ONLINE
             ;;
         disconnect)
-            nmcli connection up id "$2"
+            nmcli connection down id "$2"
             notify-send -i "$ICON_OFFLINE" -a 'AMX_WiFi' -u normal 'WiFi Disconnected' -i $ICON_OFFLINE
             ;;
         show-cli)
@@ -44,7 +44,10 @@ main() {
             ;;
         show-ui)
             nmtui
-            ;;   
+            ;;
+        show-ports)
+            netstat -tulpn
+            ;;
         *)
             printf "amx_wifi <command>\n"
             printf "          on \n"

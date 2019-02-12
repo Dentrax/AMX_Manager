@@ -1,0 +1,30 @@
+# ====================================================
+# AMX_Manager Copyright(C) 2018 Furkan Türkal
+# This program comes with ABSOLUTELY NO WARRANTY; This is free software,
+# and you are welcome to redistribute it under certain conditions; See
+# file LICENSE, which is part of this source code package, for details.
+# ====================================================
+
+#!/bin/bash
+
+main() {
+
+    case "$1" in
+        toggle)
+         
+    notify-send -a 'AMX_Touchpad' 'Disabled' -i /usr/share/icons/Adwaita/48x48/devices/input-touchpad.png
+else
+    xinput enable $ID
+    echo "Touchpad enabled."
+    notify-send -a 'AMX_Touchpad' 'Enabled' -i /usr/share/icons/Papirus/48x48/devices/input-touchpad.svg
+fi
+
+            ;;
+        *)
+            printf "touchpad <command>\n"
+            printf "         toggle \n"
+
+        esac
+}
+
+main "$@"

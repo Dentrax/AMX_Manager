@@ -54,6 +54,9 @@ main() {
         firefox-safe)
             TZ=UTC firefox --no-remote -private --safe-mode -url https://www.duckduckgo.com -new-instance -P "incognito" -fullscreen -foreground -silent
             ;;
+        figlet-time)
+            watch -t -n1 "date +%A%n%x%n%r | figlet -t -c" 
+            ;;
         termite)
             termite
             ;;
@@ -68,6 +71,9 @@ main() {
             ;;
         emacs)
             emacsclient -a '' -nqc "$@"
+            ;;
+        spyder)
+            /home/dentrax/anaconda3/bin/python /home/dentrax/anaconda3/bin/spyder
             ;;
         ranger)
         	case "$2" in
@@ -98,6 +104,11 @@ main() {
         	;;
         wavemon)
             wavemon -i wlp3s0
+            ;;
+        wego)
+            if ping -q -c 1 -W 1 8.8.8.8 >/dev/null; then
+               wego -days 1 -frontend ascii-art-table
+            fi
             ;;
         htop)
             htop
