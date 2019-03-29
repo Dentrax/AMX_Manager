@@ -57,6 +57,9 @@ main() {
         figlet-time)
             watch -t -n1 "date +%A%n%x%n%r | figlet -t -c" 
             ;;
+        godot)
+            /opt/godot/Godot_v3.1-stable_x11.64
+            ;;
         termite)
             termite
             ;;
