@@ -14,21 +14,21 @@ change_volume() {
 }
 
 main() {
-    case "$1" in
-      up)
-         change_volume 5%+
-         ;;
-      down)
-         change_volume 5%-
-         ;;
-      toggle)
-	amixer -D pulse set Master 1+ toggle 
-    notify-send -a 'AMX_Volume' -t 1000 -i notification-audio-volume-medium Muted
-	 ;;
-     *)
-         printf "volume <command>\n"
-         printf "          up \n"
-         printf "         down\n"
+  case "$1" in
+    up)
+      change_volume 5%+
+      ;;
+    down)
+      change_volume 5%-
+      ;;
+    toggle)
+      amixer -D pulse set Master 1+ toggle 
+      notify-send -a 'AMX_Volume' -t 1000 -i notification-audio-volume-medium `amixer -D pulse get Master | tail -n1 | sed -E 's/.*\[([a-z]+)].*/\1/'`
+      ;;
+    *)
+      printf "volume <command>\n"
+      printf "          up \n"
+      printf "         down\n"
 	    printf "         toggle\n"
     esac
 }
