@@ -11,7 +11,7 @@ main() {
 
     case "$1" in
         android-emulator)
-            $ANDROID_HOME/emulator/emulator -avd Nexus4-23 -camera-back webcam0 -netdelay none -netspeed full -netfast -accel on -nojni
+            sudo nice -n -19 su -c "/home/dentrax/android/emulator/emulator -avd Nexus4-23 -camera-back webcam0 -netdelay none -netspeed full -netfast -accel on -nojni -no-boot-anim -timezone Europe/Istanbul -gpu host" dentrax
             ;;
         android-studio)
             android-studio
@@ -23,6 +23,12 @@ main() {
             ;;
         chromium)
             chromium
+            ;;
+        polybar)
+            killall -qw polybar
+            while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+            polybar -q top &
+            polybar -q bottom &
             ;;
         rofi)
             case "$2" in
