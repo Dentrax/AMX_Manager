@@ -77,6 +77,15 @@ main() {
         cache)
             boost_CACHE
             ;;
+        pacman-soft)
+            paccache -dvuk0
+            ;;
+        pacman)
+            paccache -rv
+            ;;
+        pacman-hard)
+            pacman -Scc
+            ;;
         *)
             printf "amx_boost <command>\\n"
             printf "          ram\\n"

@@ -48,6 +48,9 @@ main() {
         show-ports)
             netstat -tulpn
             ;;
+        show-dmenu)
+            python /usr/local/bin/scripts/network-dmenu.py
+            ;;
         *)
             printf "amx_wifi <command>\n"
             printf "          on \n"
@@ -57,6 +60,7 @@ main() {
             printf "          show-cli\n"
             printf "          show-wifis\n"
             printf "          show-ui\n"
+            printf "          show-dmenu\n"
         esac
 }
                                                                                                                     

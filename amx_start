@@ -11,7 +11,7 @@ main() {
 
     case "$1" in
         android-emulator)
-            sudo nice -n -19 su -c "/home/dentrax/android/emulator/emulator -avd Nexus4-23 -camera-back webcam0 -netdelay none -netspeed full -netfast -accel on -nojni -no-boot-anim -timezone Europe/Istanbul -gpu host" dentrax
+            /home/dentrax/android/emulator/emulator -avd Nexus4-23 -camera-back webcam0 -netdelay none -netspeed full -netfast -accel on -nojni -no-boot-anim -timezone Europe/Istanbul -gpu host
             ;;
         android-studio)
             android-studio
@@ -64,7 +64,7 @@ main() {
             watch -t -n1 "date +%A%n%x%n%r | figlet -t -c" 
             ;;
         godot)
-            /opt/godot/Godot_v3.1-stable_x11.64
+            /opt/godot/Godot_v3.1.1-stable_x11.64
             ;;
         termite)
             termite
@@ -83,6 +83,9 @@ main() {
             ;;
         emacs)
             emacsclient -a '' -nqc "$@"
+            ;;
+        vscode)
+            code
             ;;
         spyder)
             /home/dentrax/anaconda3/bin/python /home/dentrax/anaconda3/bin/spyder

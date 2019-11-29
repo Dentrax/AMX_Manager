@@ -25,23 +25,25 @@ main() {
             STATE=`xinput list-props $ID|grep 'Device Enabled'|awk '{print $4}'`
             if [ $STATE -eq 1 ]
             then
-                xinput disable $ID
                 echo "Touchpad disabled."
-                notify-send -a 'AMX_Touchpad' 'Disabled' -i /usr/share/icons/Adwaita/48x48/devices/input-touchpad.png
+                synclient TouchpadOff=1
+                xinput disable $ID
+                notify-send -a 'AMX_TouchPad' -u low 'Disabled' -i $ICON_TOUCHPAD
             else
-                xinput enable $ID
                 echo "Touchpad enabled."
-                notify-send -a 'AMX_Touchpad' 'Enabled' -i /usr/share/icons/Papirus/48x48/devices/input-touchpad.svg
+                xinput enable $ID
+                synclient TouchpadOff=0
+                notify-send -a 'AMX_TouchPad' -u low 'Enabled' -i $ICON_TOUCHPAD
             fi
 
             ;;
         auto)
             if [ $(ls /dev/input | grep mouse | wc -l) -gt 1 ]; then
                 synclient TouchpadOff=1
-                notify-send -a 'AMX_Touchpad' -u low 'Mouse Mod; Touchpad Disabled' -i $ICON_MOUSE
+                notify-send -a 'AMX_TouchPad' -u low 'Mouse Mod; TouchPad Disabled' -i $ICON_MOUSE
             else
                 synclient TouchpadOff=0
-                notify-send -a 'AMX_Touchpad' -u low 'Touchpad Mod; Mouse Disabled' -i $ICON_TOUCHPAD
+                notify-send -a 'AMX_Touchpad' -u low 'TouchPad Mod; Mouse Disabled' -i $ICON_TOUCHPAD
             fi 
             ;;
         *)
