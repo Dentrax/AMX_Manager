@@ -1,1 +1,56 @@
-/usr/local/bin/amx_download
+# ====================================================
+# AMX_Manager Copyright(C) 2018 Furkan Türkal
+# This program comes with ABSOLUTELY NO WARRANTY; This is free software,
+# and you are welcome to redistribute it under certain conditions; See
+# file LICENSE, which is part of this source code package, for details.
+# ====================================================
+
+#!/bin/bash
+
+# Ref: https://github.com/metinUr/dotfiles/blob/master/opt/bin/dsong
+# Ref: https://stackoverflow.com/a/47097185
+
+# Check for required applications
+command -v notify-send  >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'notify-send' but it's not installed! Aborting.";   exit 1; }
+command -v wmctrl       >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'wmctrl' but it's not installed! Aborting.";        exit 1; }
+command -v xdotool      >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'xdotool' but it's not installed! Aborting.";       exit 1; }
+command -v youtube-dl   >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'youtube-dl' but it's not installed! Aborting.";    exit 1; }
+
+main() {
+
+    case "$1" in
+        youtube-music)
+            id=$(wmctrl -l | grep -oP "(?<=)(0x\w+)(?=.*Chromium)")
+
+            if [ -z "$id" ]
+            then
+                notify-send -a 'AMX_Download' -u low "Chromium couldn't have found!"
+            else
+                xdotool windowactivate $id
+                xdotool key --window $id "CTRL+l"
+                xdotool key --window $id "CTRL+c"
+
+                URL=`xclip -o -selection clipboard`
+
+                if  [[ $URL == https://www.youtube.com/watch?v=* ]] ;
+                then
+                    notify-send -a 'AMX_Download' -u low -t 1000 "YouTube Music download is being started!"
+
+                    youtube-dl -o "~/Music/%(title)s.%(ext)s" --no-part --no-mtime --xattrs --add-metadata --print-json --no-warnings --format m4a --audio-format best --audio-quality=320k -x $URL > metadata
+
+                    title=$(jq -r ".title" metadata)
+
+                    notify-send -a 'AMX_Download' -u low -t 1000 "Download finished!" "'$title'"
+                else
+                    notify-send -a 'AMX_Download' -u low "Given link must be a YouTube video!"
+                fi
+            fi
+
+            ;;
+        *)
+            printf "amx_download <command>\n"
+            printf "             youtube-music\n"
+       esac
+}
+
+main "$@"
