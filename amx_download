@@ -14,6 +14,8 @@
 command -v notify-send  >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'notify-send' but it's not installed! Aborting.";   exit 1; }
 command -v wmctrl       >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'wmctrl' but it's not installed! Aborting.";        exit 1; }
 command -v xdotool      >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'xdotool' but it's not installed! Aborting.";       exit 1; }
+command -v xclip        >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'xclip' but it's not installed! Aborting.";         exit 1; }
+command -v jq           >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'jq' but it's not installed! Aborting.";            exit 1; }
 command -v youtube-dl   >/dev/null 2>&1 || { echo >&2 "AMX_Download: I require 'youtube-dl' but it's not installed! Aborting.";    exit 1; }
 
 main() {
@@ -34,15 +36,26 @@ main() {
 
                 if  [[ $URL == https://www.youtube.com/watch?v=* ]] ;
                 then
-                    notify-send -a 'AMX_Download' -u low -t 1000 "YouTube Music download is being started!"
+                    notify-send -a 'AMX_Download' -u low -t 1500 "YouTube: Metadata is checking before download..."
 
-                    youtube-dl -o "~/Music/%(title)s.%(ext)s" --no-part --no-mtime --xattrs --add-metadata --print-json --no-warnings --format m4a --audio-format best --audio-quality=320k -x $URL > metadata
+                    youtube-dl --simulate --skip-download --print-json -x $URL > metadata
+                    isMusic=$(jq -e '.categories | contains(["Music"])' metadata)
 
-                    title=$(jq -r ".title" metadata)
+                    if [[ "$isMusic" == "false" ]]; 
+                    then
+                        notify-send -a 'AMX_Download' -u low -t 2000 "YouTube: Category is not Music!"
+                    else
+                        notify-send -a 'AMX_Download' -u low -t 1500 "YouTube: Music download is being started..."
 
-                    notify-send -a 'AMX_Download' -u low -t 1000 "Download finished!" "'$title'"
+                        youtube-dl -o "~/Music/%(title)s.%(ext)s" --no-part --no-mtime --xattrs --add-metadata --print-json --no-warnings --format m4a --audio-format best --audio-quality=320k -x $URL > data
+
+                        title=$(jq -r ".title" data)
+
+                        notify-send -a 'AMX_Download' -u low -t 2000 "YouTube: Download finished!" "'$title'"
+                    fi
+                    
                 else
-                    notify-send -a 'AMX_Download' -u low "Given link must be a YouTube video!"
+                    notify-send -a 'AMX_Download' -u low "YouTube: Given link must be a YouTube video!"
                 fi
             fi
 
