@@ -27,8 +27,8 @@ main() {
         polybar)
             killall -qw polybar
             while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-            polybar -q top &
-            polybar -q bottom &
+            nohup polybar -q top > /dev/null 2>&1 &
+            nohup polybar -q bottom > /dev/null 2>&1 &
             ;;
         rofi)
             case "$2" in
