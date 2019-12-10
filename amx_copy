@@ -1,1 +1,24 @@
-/usr/local/bin/amx_copy
+# ====================================================
+# AMX_Manager Copyright(C) 2018 Furkan Türkal
+# This program comes with ABSOLUTELY NO WARRANTY; This is free software,
+# and you are welcome to redistribute it under certain conditions; See
+# file LICENSE, which is part of this source code package, for details.
+# ====================================================
+
+cp $1 $2 & 
+
+{
+        i="0"
+        while (true)
+        do
+            proc=$(ps aux | grep -v grep | grep -e "cp $1")
+            if [[ "$proc" == "" ]]; then break; fi
+            sleep 0.01
+            echo $i
+            i=$(expr $i + 1)
+            if [ $i = 100 ]; then i=0; fi
+        done
+        echo 100
+        sleep 2
+} | whiptail --title "AMX_Copy" --gauge "Copying $1 --->> $2" 8 78 0
+

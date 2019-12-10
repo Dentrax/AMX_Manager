@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# ====================================================
+# AMX_Manager Copyright(C) 2018 Furkan Türkal
+# This program comes with ABSOLUTELY NO WARRANTY; This is free software,
+# and you are welcome to redistribute it under certain conditions; See
+# file LICENSE, which is part of this source code package, for details.
+# ====================================================
+
+main() {
+    case "$1" in
+      	calc-lines)
+            find * -maxdepth 0 -type f -exec wc -l {} +
+
+        	#for file in *; 
+            #do 
+            #    if [[ -f "$file" ]]; then 
+            #        echo "$(wc -l $file | cut -f 1 -d " ") lines, $(wc -w $file | cut -f 1 -d " ") words : [$file]" 
+            #    fi 
+            #done
+            ;;
+        calc-lines-recursive)
+            find . -type f -exec wc -l {} +
+            ;;
+    	calc-average)
+            # Instantly shutdown
+            systemctl --force poweroff
+        	;;
+     	*)  
+ 			printf "amx_io <command>\n"  
+        	printf "          calc-lines \n"
+            printf "          calc-average\n"
+    esac
+}
+
+main "$@"
